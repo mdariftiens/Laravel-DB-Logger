@@ -23,6 +23,13 @@ Go to ``` config/logging.php ``` and add following
 
 ```
 
+```php
+        'stack' => [
+            'driver' => 'stack',
+            'channels' => ['custom'],
+            'ignore_exceptions' => true,
+        ],
+```
 
 ### Security
 
