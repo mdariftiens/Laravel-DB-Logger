@@ -16,9 +16,20 @@ class LogHandler extends AbstractProcessingHandler
 
     protected function write(array $record):void
     {
-        $log = new Log();
-        $log->fill($record['formatted']);
-        $log->save();
+
+        try {
+            $log = new Log();
+            foreach ($record['formatted'] as $key => $item){
+                if (in_array($key,['exception'])){
+                    continue;
+                }
+                $log->{$key}  = $item;
+            }
+            $log->save();
+        }
+        catch (\Exception $exception){
+            dd($exception);
+        }
     }
 
     /**
