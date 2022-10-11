@@ -15,9 +15,9 @@ class DBlogServiceProvider extends ServiceProvider
          * Optional methods to load your package assets
          */
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'dblog');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'dblog');
+         $this->loadViewsFrom(__DIR__.'/resources/views', 'dblog');
          $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+         $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -25,9 +25,9 @@ class DBlogServiceProvider extends ServiceProvider
             ], 'config');
 
             // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/dblog'),
-            ], 'views');*/
+            $this->publishes([
+                __DIR__.'/resources/views' => resource_path('views/vendor/dblog'),
+            ], 'views');
 
             // Publishing assets.
             /*$this->publishes([
