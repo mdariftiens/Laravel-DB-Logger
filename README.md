@@ -13,6 +13,14 @@ You can install the package via composer:
 composer require mdariftiens/dblog
 ```
 
+
+Run command to make table ```logs```:
+
+```bash
+php artisan migrate
+```
+
+
 ## Usage
 Go to ``` config/logging.php ``` and add following 
 ```php
