@@ -15,13 +15,17 @@
 </div>
 
 <div class="container-fluid">
+
+    @if(session()->has('message'))
     <div class="row">
-        <div class="col-sm-2">
-            <h3>Dates</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
         </div>
-        <div class="col-sm-10">
+    </div>
+    @endif
+
+    <div class="row">
+        <div class="col-sm-12">
             <table class="table table-info">
                 <thead>
                     <tr>
@@ -35,7 +39,7 @@
                         <th>IP</th>
                         <th>User Agent</th>
                         <th>Type</th>
-                        <th>Action</th>
+                        <th style="width: 150px;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,12 +55,24 @@
                         <td>{{ $log->ip }}</td>
                         <td>{{ $log->user_agent }}</td>
                         <td>{{ $log->type }}</td>
-                        <td><a href="">Detail</a></td>
+                        <td>
+
+
+                            <form action="{{ route('log-delete', $log->id) }}" method="post" onsubmit="return confirm('are you sure?')">
+                                @method('delete')
+                                @csrf
+                                <a class="btn btn-info" href="{{ route('showLogDetail', $log->id) }}">Detail</a>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+
                     </tr>
                     @empty
                         <tr><td colspan="10">No Logs found!</td></tr>
                     @endforelse
                 </tbody>
+
+                {!! $logs->links() !!}
 
             </table>
         </div>
