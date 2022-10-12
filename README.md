@@ -31,6 +31,13 @@ Go to ``` config/logging.php ``` and add following
         ],
 ```
 
+
+To visit logs
+
+```angular2html
+/show-log
+```
+
 ### Security
 
 If you discover any security related issues, please email md.arif.tiens@gmail.com instead of using the issue tracker.
